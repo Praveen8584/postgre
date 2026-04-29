@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Student</title>
+
+<!-- Mobile Responsive -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .form-box {
+        max-width: 500px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 576px) {
+        .form-box {
+            margin: 15px;
+            padding: 15px;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="form-box">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Update Details</h5>
+            <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+
+        <!-- Success Message -->
+        {% if success %}
+        <div id="successMsg" class="alert alert-success text-center">
+            Record Submit Successfully
+        </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="mb-2"><label>Name As Per SSLC</label>
+                <input type="text" name="name" value="{{student.name}}" class="form-control" placeholder="SSLC Name" required>
+            </div>
+
+            <div class="mb-2"><label>Name As Per Aadhar</label>
+                <input type="text" name="Name_Aadhar" value="{{student.Name_Aadhar}}" class="form-control" placeholder="Aadhar Name" required>
+            </div>
+
+            <div class="mb-2"><label>Aadhar Number</label>
+                <input type="text" name="Aadhar_Number" value="{{student.Aadhar_Number}}" class="form-control" placeholder="Aadhar Number" required>
+            </div>
+
+            <div class="mb-2"><label>Name of the Mother</label>
+                <input type="text" name="Name_of_the_Mother" value="{{student.Name_of_the_Mother}}" class="form-control" placeholder="Name of the Mother" required>
+            </div>
+
+            <div class="mb-2"><label>Name of the Father</label>
+                <input type="text" name="Name_of_the_Father" value="{{student.Name_of_the_Father}}" class="form-control" placeholder="Name of the Father" required>
+            </div>
+
+            <div class="mb-2"><label>Date of Birth</label>
+                <input type="date" name="Date_of_Birth" value="{{student.Date_of_Birth}}" class="form-control" placeholder="Date of Birth" required>
+            </div>
+
+            <!-- Gender Dropdown -->
+            <div class="mb-2"><label>Gender</label>
+                <select name="Gender" class="form-select" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male" {% if student.gender=='Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if student.gender=='Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if student.gender=='Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+
+            <div class="mb-2"><label>Religion</label>
+                <select name="Religion" class="form-select" required>
+                    <option value="">Select Religion</option>
+                    <option value="Hindu" {% if student.Religion=='Hindu' %}selected{% endif %}>Hindu</option>
+                    <option value="Muslim" {% if student.Religion=='Muslim' %}selected{% endif %}>Muslim</option>
+                    <option value="Christian" {% if student.Religion=='Christian' %}selected{% endif %}>Christian</option>
+                    <option value="Sikh" {% if student.Religion=='Sikh' %}selected{% endif %}>Sikh</option>
+                    <option value="Buddhist" {% if student.Religion=='Buddhist' %}selected{% endif %}>Buddhist</option>
+                    <option value="Jain" {% if student.Religion=='Jain' %}selected{% endif %}>Jain</option>
+                    <option value="Others" {% if student.Religion=='Others' %}selected{% endif %}>Others</option>
+                </select>
+            </div>
+
+            <div class="mb-2"><label>Qualifying Examination</label>
+                <select name="Qualifying_Examination" class="form-select" required>
+                    <option value="">Select Qualifying Examination</option>
+                    <option value="SSLC" {% if student.Qualifying_Examination=='SSLC' %}selected{% endif %}>SSLC</option>
+                    <option value="CBSC" {% if student.Qualifying_Examination=='CBSC' %}selected{% endif %}>CBSC</option>
+                    <option value="ICSE" {% if student.Qualifying_Examination=='ICSE' %}selected{% endif %}>ICSE</option>
+                    <option value="Others" {% if student.Qualifying_Examination=='Others' %}selected{% endif %}>Others</option>
+                </select>
+            </div>
+
+            <div class="mb-2"><label>Code of Native State</label>
+                <input type="text" name="Code_of_Native_State" value="{{student.Code_of_Native_State}}" class="form-control" placeholder="Code of Native State" required>
+            </div>
+
+             <div class="mb-2"><label>Code of Native District</label>
+                <input type="text" name="Code_of_Native_District" value="{{student.Code_of_Native_District}}" class="form-control" placeholder="Code of Native District" required>
+            </div>
+
+            <div class="mb-2"><label>Total No of Years Studied In Karnataka</label>
+                <input type="text" name="Total_No_of_Years_Studied_In_Karnataka" value="{{student.Total_No_of_Years_Studied_In_Karnataka}}" class="form-control" placeholder="Total No of Years Studied In Karnataka" required>
+            </div>
+
+            <div class="mb-3"><label>Have You Studied In Rural Areas From 1 to 10</label>
+                <select name="You_Have_Studied_In_Rural_Areas_From_1_to_10" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="Yes" {% if student.You_Have_Studied_In_Rural_Areas_From_1_to_10=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if student.You_Have_Studied_In_Rural_Areas_From_1_to_10=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label>Have You Studied In Kanada Medium From 1 to 10</label>
+                <select name="Have_You_Studied_In_Kanada_Medium_From_1_to_10" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="Yes" {% if student.Have_You_Studied_In_Kanada_Medium_From_1_to_10=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if student.Have_You_Studied_In_Kanada_Medium_From_1_to_10=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label>Do You Claming Exemption From 5 Years of Study Rule</label>
+                <select name="Do_You_Claming_Exemption_From_5_Years_of_Study_Rule" class="form-select">
+                    <option value="">Select</option>
+                    <option value="Yes" {% if student.Do_You_Claming_Exemption_From_5_Years_of_Study_Rule=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if student.Do_You_Claming_Exemption_From_5_Years_of_Study_Rule=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label>Do You Claiming SNQ Quota Benefit</label>
+                <select name="Do_You_Claiming_SNQ_Quota_Benefit" class="form-select">
+                    <option value="">Select</option>
+                    <option value="Yes" {% if student.Do_You_Claiming_SNQ_Quota_Benefit=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if student.Do_You_Claiming_SNQ_Quota_Benefit=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label>Do You Claiming HydKar Quota Benefit</label>
+                <select name="Do_You_Claiming_HydKar_Quota_Benefit" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="Yes" {% if student.Do_You_Claiming_HydKar_Quota_Benefit=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if student.Do_You_Claiming_HydKar_Quota_Benefit=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="mb-3"><label>Do You Claiming Special Category Benefit</label>
+                <select name="Do_You_Claiming_Special_Category_Benefit" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="Yes" {% if student.Do_You_Claiming_Special_Category_Benefit=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if student.Do_You_Claiming_Special_Category_Benefit=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+
+            <div class="mb-2"><label>Reserved Category</label>
+                <input type="text" name="Reserved_Category" value="{{student.Reserved_Category}}" class="form-control" placeholder="Reserved Category" required>
+            </div>
+
+            <div class="mb-2"><label>Category Name</label>
+                <input type="text" name="Name_of_the_Cast" value="{{student.Name_of_the_Cast}}" class="form-control" placeholder="Name of the Cast" required>
+            </div>
+
+            <div class="mb-2"><label>Annual Income</label>
+                <input type="text" name="Annual_Income" value="{{student.Annual_Income}}" class="form-control" placeholder="Annual Income" required>
+            </div>
+
+            <div class="mb-2"><label>Register Number</label>
+                <input type="text" name="Register_No_of_SSLC_Or_Equivalent_Exam" value="{{student.Register_No_of_SSLC_Or_Equivalent_Exam}}" class="form-control" placeholder="Register Number" required>
+            </div>
+
+            <div class="mb-2"><label>Year Of Passing</label>
+                <input type="text" name="Year_of_Passing" value="{{student.Year_of_Passing}}" class="form-control" placeholder="Year Of Passing" required>
+            </div>
+
+            <div class="mb-2"><label>Total Max Marks In all Subjects</label>
+                <input type="text" name="Total_Max_Marks_In_all_Subjects" value="{{student.Total_Max_Marks_In_all_Subjects}}" class="form-control" placeholder="Total Max Marks In all Subjects" required>
+            </div>
+
+            <div class="mb-2"><label>Total Marks Obtained In All Subjects</label>
+                <input type="text" name="Total_Marks_Obtained_In_All_Subjects" value="{{student.Total_Marks_Obtained_In_All_Subjects}}" class="form-control" placeholder="Total  Marks Obtained In all Subjects" required>
+            </div>
+
+            <div class="mb-2"><label>Max Marks In Science</label>
+                <input type="text" name="Max_Marks_In_Science" value="{{student.Max_Marks_In_Science}}" class="form-control" placeholder="Max Marks In Science" required>
+            </div>
+
+             <div class="mb-2"><label>Marks Obtained In Science</label>
+                <input type="text" name="Marks_Obtained_In_Science" value="{{student.Marks_Obtained_In_Science}}" class="form-control" placeholder="Marks Obtained In Science" required>
+            </div>
+
+            <div class="mb-2"><label>Max Marks In Maths</label>
+                <input type="text" name="Max_Marks_In_Maths" value="{{student.Max_Marks_In_Maths}}" class="form-control" placeholder="Max Marks In Maths" required>
+            </div>
+
+            <div class="mb-2"><label>Marks Obtained In Maths</label>
+                <input type="text" name="Marks_Obtained_In_Maths" value="{{student.Marks_Obtained_In_Maths}}" class="form-control" placeholder="Marks Obtained In Maths" required>
+            </div>
+
+            <!-- Course Dropdown -->
+            <div class="mb-3">
+                <select name="course" class="form-select" required>
+                    <option value="">Select Course</option>
+                    <option value="Civil Engineering" {% if student.course=='Civil Engineering' %}selected{% endif %}>Civil Engineering</option>
+                    <option value="Computer Science & Engineering" {% if student.course=='Computer Science & Engineering' %}selected{% endif %}>Computer Science & Engineering</option>
+                    <option value="Electronics & Communication Engineering" {% if student.course=='Electronics & Communication Engineering' %}selected{% endif %}>Electronics & Communication Engineering</option>
+                    <option value="Mechanical Engineering" {% if student.course=='Mechanical Engineering' %}selected{% endif %}>Mechanical Engineering</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Update</button>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- Auto Hide Script -->
+<script>
+    setTimeout(function() {
+        var msg = document.getElementById("successMsg");
+        if (msg) {
+            msg.style.display = "none";
+        }
+    }, 3000);
+</script>
+
+</body>
+</html>

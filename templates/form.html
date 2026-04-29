@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Student</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f6f9;
+    }
+
+    .form-box {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        margin-top: 40px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 576px) {
+        .form-box {
+            margin-top: 20px;
+            padding: 15px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="form-box">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Admission Registration</h5>
+            <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+
+        <!-- Success Message -->
+        {% if success %}
+        <div id="successMsg" class="alert alert-success text-center">
+            Record Submit Successfully
+        </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <input type="text" name="name" placeholder="Name As Per SSLC" class="form-control mb-3" oninput="this.value = this.value.toUpperCase();" required>
+
+            <input type="text" name="Name_Aadhar" placeholder="Name As Per Aadhar" class="form-control mb-3" required>
+
+            <input type="text" name="Aadhar_Number" placeholder="Aadhar Number" class="form-control mb-3" required>
+
+            <input type="text" name="Name_of_the_Mother" placeholder="Name of the Mother" class="form-control mb-3" required>
+
+            <input type="text" name="Name_of_the_Father" placeholder="Name of the Father" class="form-control mb-3" required>
+
+            <input type="date" name="Date_of_Birth" placeholder="Date of Birth" class="form-control mb-3" required>
+
+            <select name="Gender" class="form-select mb-3" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+
+            <select name="Religion" class="form-select mb-3" required>
+                <option value="">Select Religion</option>
+                <option>Hindu</option>
+                <option>Muslim</option>
+                <option>Christian</option>
+                <option>Sikh</option>
+                <option>Buddhist</option>
+                <option>Jain</option>
+                <option>Others</option>
+            </select>
+
+            <select name="Qualifying_Examination" class="form-select mb-3" required>
+                <option value="">Select Qualifying Examination</option>
+                <option>SSLC</option>
+                <option>CBSE</option>
+                <option>ICSE</option>
+                <option>Others</option>
+            </select>
+
+            <input type="text" name="Code_of_Native_State" placeholder="Code of Native State" class="form-control mb-3" required>
+
+             <input type="text" name="Code_of_Native_District" placeholder="Code of Native District" class="form-control mb-3" required>
+
+             <input type="text" name="Total_No_of_Years_Studied_In_Karnataka" placeholder="Total No of Years Studied In Karnataka" class="form-control mb-3" required>
+
+             <select name="You_Have_Studied_In_Rural_Areas_From_1_to_10" class="form-select mb-4" required>
+                <option value="">Have You Studied In Rural Areas From 1 to 10</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <select name="Have_You_Studied_In_Kanada_Medium_From_1_to_10" class="form-select mb-4" required>
+                <option value="">Have You Studied In Kanada Medium From 1 to 10</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <select name="Do_You_Claming_Exemption_From_5_Years_of_Study_Rule" class="form-select mb-4">
+                <option value="">Do You Claming Exemption From 5 Years of Study Rule</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <select name="Do_You_Claiming_SNQ_Quota_Benefit" class="form-select mb-4">
+                <option value="">Do You Claiming SNQ Quota Benefit</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <select name="Do_You_Claiming_HydKar_Quota_Benefit" class="form-select mb-4" required>
+                <option value="">Do You Claiming HydKar Quota Benefit</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <select name="Do_You_Claiming_Special_Category_Benefit" class="form-select mb-4" required>
+                <option value="">Do You Claiming Special Category Benefit</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <input type="text" name="Reserved_Category" placeholder="Enter Reserved Category" class="form-control mb-3" required>
+
+            <input type="text" name="Name_of_the_Cast" placeholder="Enter Category Name" class="form-control mb-3" required>
+
+            <input type="text" name="Annual_Income" placeholder="Enter Annual Income" class="form-control mb-3" required>
+
+            <input type="text" name="Register_No_of_SSLC_Or_Equivalent_Exam" placeholder="Enter Register Number" class="form-control mb-3" required>
+
+            <input type="text" name="Year_of_Passing" placeholder="Enter Year Of Passing" class="form-control mb-3" required>
+
+            <input type="text" name="Total_Max_Marks_In_all_Subjects" placeholder="Enter Total Max Marks In All Subjects" class="form-control mb-3" required>
+
+            <input type="text" name="Total_Marks_Obtained_In_All_Subjects" placeholder="Enter Total  Marks Obtained In All Subjects" class="form-control mb-3" required>
+
+            <input type="text" name="Max_Marks_In_Science" placeholder="Enter Max Marks In Science" class="form-control mb-3" required>
+
+            <input type="text" name="Marks_Obtained_In_Science" placeholder="Enter  Marks Obtained In Science" class="form-control mb-3" required>
+
+            <input type="text" name="Max_Marks_In_Maths" placeholder="Enter  Max Marks In Maths" class="form-control mb-3" required>
+
+            <input type="text" name="Marks_Obtained_In_Maths" placeholder="Enter Marks Obtained In Maths " class="form-control mb-3" required>
+
+
+            <select name="course" class="form-select mb-4" required>
+                <option value="">Select Course</option>
+                <option>Not Allotted</option>
+            </select>
+
+            <button type="submit" class="btn btn-success w-100">Submit</button>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- Auto Hide Script -->
+<script>
+    setTimeout(function() {
+        var msg = document.getElementById("successMsg");
+        if (msg) {
+            msg.style.display = "none";
+        }
+    }, 3000);
+</script>
+
+</body>
+</html>
