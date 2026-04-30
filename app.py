@@ -3,6 +3,7 @@ import psycopg2
 from flask import Flask, render_template, request, redirect, session, send_file
 import pandas as pd
 import tempfile
+from io import BytesIO
 
 app = Flask(__name__)
 app.secret_key = "secret123"
@@ -203,10 +204,17 @@ def export():
     df = pd.read_sql_query("SELECT * FROM students", conn)
     conn.close()
 
-    temp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
-    df.to_excel(temp.name, index=False)
+    output = BytesIO()
+    df.to_excel(output, index=False, engine='openpyxl')
+    output.seek(0)
 
-    return send_file(temp.name, as_attachment=True)
+    return send_file(
+        output,
+        download_name="students.xlsx",
+        as_attachment=True,
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
 
 # LOGOUT
 @app.route('/logout')
