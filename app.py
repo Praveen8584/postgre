@@ -55,7 +55,8 @@ def init_db():
             Marks_Obtained_In_Science TEXT,
             Max_Marks_In_Maths TEXT,
             Marks_Obtained_In_Maths TEXT,
-            course TEXT
+            course TEXT,
+            mobile TEXT
         )
     ''')
 
@@ -130,8 +131,8 @@ def add():
                 Total_Max_Marks_In_all_Subjects,
                 Total_Marks_Obtained_In_All_Subjects,
                 Max_Marks_In_Science, Marks_Obtained_In_Science,
-                Max_Marks_In_Maths, Marks_Obtained_In_Maths, course
-            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                Max_Marks_In_Maths, Marks_Obtained_In_Maths, course,mobile
+            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
         """, tuple(request.form.values()))
 
         conn.commit()
@@ -177,7 +178,7 @@ def edit(id):
                 Total_Max_Marks_In_all_Subjects=%s,
                 Total_Marks_Obtained_In_All_Subjects=%s,
                 Max_Marks_In_Science=%s, Marks_Obtained_In_Science=%s,
-                Max_Marks_In_Maths=%s, Marks_Obtained_In_Maths=%s, course=%s
+                Max_Marks_In_Maths=%s, Marks_Obtained_In_Maths=%s, course=%s,mobile=%s
             WHERE id=%s
         """, (*request.form.values(), id))
 
