@@ -50,6 +50,13 @@
         </div>
         {% endif %}
 
+
+        {% if error %}
+        <div class="alert alert-danger text-center">
+        {{ error }}
+        </div>
+        {% endif %}
+
         <form method="POST">
 
             <input type="text" name="name" placeholder="Name As Per SSLC" class="form-control mb-3" oninput="this.value = this.value.toUpperCase();" required>
