@@ -115,10 +115,10 @@ def add():
         cur = conn.cursor()
 
         form_data = tuple(request.form.values())
-        aadhar = request.form['anumber']
+        aadhar = request.form['Aadhar_Number']
 
         # ✅ CHECK DUPLICATE AADHAR
-        cur.execute("SELECT * FROM students WHERE anumber=%s", (aadhar,))
+        cur.execute("SELECT * FROM students WHERE Aadhar_Number=%s", (aadhar,))
         existing = cur.fetchone()
 
         if existing:
