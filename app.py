@@ -28,7 +28,7 @@ def init_db():
             id SERIAL PRIMARY KEY,
             name TEXT,
             Name_Aadhar TEXT,
-            Aadhar_Number TEXT,
+            Aadhar_Number TEXT UNIQUE,
             Name_of_the_Mother TEXT,
             Name_of_the_Father TEXT,
             Date_of_Birth TEXT,
@@ -114,6 +114,18 @@ def add():
         conn = get_db()
         cur = conn.cursor()
 
+        form_data = tuple(request.form.values())
+        aadhar = request.form['anumber']
+
+        # ✅ CHECK DUPLICATE AADHAR
+        cur.execute("SELECT * FROM students WHERE anumber=%s", (aadhar,))
+        existing = cur.fetchone()
+
+        if existing:
+            cur.close()
+            conn.close()
+            return render_template('form.html', success=False, error="Aadhar number already exists!")
+
         cur.execute("""
             INSERT INTO students (
                 name, Name_Aadhar, Aadhar_Number, Name_of_the_Mother,
@@ -133,7 +145,7 @@ def add():
                 Max_Marks_In_Science, Marks_Obtained_In_Science,
                 Max_Marks_In_Maths, Marks_Obtained_In_Maths, course,mobile
             ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-        """, tuple(request.form.values()))
+        """, form_data)
 
         conn.commit()
         cur.close()
